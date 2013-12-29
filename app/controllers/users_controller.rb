@@ -32,7 +32,6 @@ class UsersController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def edit
   end
 
@@ -45,8 +44,6 @@ class UsersController < ApplicationController
     end
   end
   
-=======
->>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
   private
 
     def user_params
