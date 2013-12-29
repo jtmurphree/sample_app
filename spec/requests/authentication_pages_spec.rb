@@ -1,10 +1,19 @@
 require 'spec_helper'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
 describe "Authentication" do
 	subject { page }
 	describe "signin page" do
 		before { visit signin_path }
+<<<<<<< HEAD
 		it { should be_signin_page}
+=======
+
+		it { should have_content('Sign in') }
+		it { should have_title('Sign in') }
+>>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
 	end
 
 	describe "signin" do
@@ -14,15 +23,24 @@ describe "Authentication" do
 			before { click_button "Sign in" }
 
 	 		it { should have_title('Sign in') }
+<<<<<<< HEAD
 	 		it { should have_error_message('Invalid') }
 
 	 		describe "after visiting another page" do
 	 			before { click_link "Home" }
 	 			it { should_not have_error_message('Invalid')} 
+=======
+	 		it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+
+	 		describe "after visiting another page" do
+	 			before { click_link "Home" }
+	 			it { should_not have_selector('div.alert.alert-error')} 
+>>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
 	 		end
 	 	end
 
 	 	describe "with valid information" do
+<<<<<<< HEAD
 	 		let(:user) { FactoryGirl.create(:user) }
 	 		before { sign_in user }
 
@@ -107,4 +125,24 @@ describe "Authentication" do
 			it { should_not have_link('Sign in', 		href: signin_path) }
 		end
 	end
+=======
+	 		let(:user) { FactoryGirl.create(:user)}
+	 		before do
+	 			fill_in "Email",		with: user.email.upcase
+	 			fill_in "Password",		with: user.password
+	 			click_button "Sign in"
+	 		end
+
+	 		it { should have_title(user.name) }
+	 		it { should have_link('Profile',		href: user_path(user)) }
+	 		it { should have_link('Sign out',		href: signout_path) }
+	 		it { should_not have_link('Sign in', 		href: signin_path)	}
+
+	 		describe "followed by signout" do
+	 			before {click_link "Sign out" }
+	 			it { should have_link('Sign in')}
+	 		end
+	 	end
+	end
+>>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
 end

@@ -14,7 +14,10 @@ describe User do
 	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:remember_token) }
 	it { should respond_to(:authenticate) }
+<<<<<<< HEAD
 	it { should respond_to(:admin) }
+=======
+>>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
 
 	it { should be_valid }
 	it { should_not be_admin }
