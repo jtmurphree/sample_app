@@ -49,10 +49,18 @@ describe "UserPages" do
 
   describe "profile page" do
   	let(:user) { FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "bar") }
   	before { visit user_path(user) }
 
   	it { should have_content(user.name) }
   	it { should have_title(full_title(user.name)) }
+
+    describe "microposts" do 
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
   end
 
   describe "signup page" do
@@ -95,11 +103,9 @@ describe "UserPages" do
 
       it "should create a user" do
         expect { click_button submit}.to change(User, :count).by(1)
-<<<<<<< HEAD
       end
-=======
-      end  
->>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
+        
+
 
       describe "after saving the user" do
         before { click_button submit }
@@ -108,7 +114,6 @@ describe "UserPages" do
         it {should have_link('Sign out')}
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-<<<<<<< HEAD
       end
     end
   end
@@ -148,9 +153,6 @@ describe "UserPages" do
       it { should have_link('Sign out', href: signout_path) }
       specify { expect(user.reload.name).to eq new_name }
       specify { expect(user.reload.email).to eq new_email }
-=======
-      end  
->>>>>>> 796e56ea5a821d7939d031e10c8dd51ad186a4e9
     end
   end
 end
